@@ -40,6 +40,19 @@ public class UserService {
 		return new User(obj.getId(), obj.getName(), obj.getEmail());
 	}
 	
+	public User update(User obj) {
+		
+		User newObj = userRepository.findById(obj.getId()).orElse(null);
+		update(newObj, obj);
+		return userRepository.save(newObj);
+		
+	}
+	
+	private void update(User newObj, User obj) {
+		newObj.setName(obj.getName());
+		newObj.setEmail(obj.getEmail());
+	}
+
 	public void delete(String id) {
 		findById(id);
 		userRepository.deleteById(id);
