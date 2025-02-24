@@ -1,13 +1,14 @@
 package com.ruben.project.workshop.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import com.ruben.project.workshop.dto.Author;
+import com.ruben.project.workshop.dto.AuthorDTO;
+import com.ruben.project.workshop.dto.CommentDTO;
 
 @Document
 public class Post implements Serializable{
@@ -18,17 +19,19 @@ public class Post implements Serializable{
 	private Date date;
 	private String title;
 	private String body;
-	private Author author;
+	private AuthorDTO authorDto;
 	
-	Post(){}
+	private List<CommentDTO> listComments = new ArrayList<>();
+	
+	public Post(){}
 
-	public Post(String id, Date date, String title, String body, Author author) {
+	public Post(String id, Date date, String title, String body, AuthorDTO authorDto) {
 		super();
 		this.id = id;
 		this.date = date;
 		this.title = title;
 		this.body = body;
-		this.author = author;
+		this.authorDto = authorDto;
 	}
 
 	public String getId() {
@@ -63,12 +66,20 @@ public class Post implements Serializable{
 		this.body = body;
 	}
 
-	public Author getAuthor() {
-		return author;
+	public AuthorDTO getAuthor() {
+		return authorDto;
 	}
 
-	public void setAuthor(Author user) {
-		this.author = user;
+	public void setAuthor(AuthorDTO user) {
+		this.authorDto = user;
+	}
+	
+	public List<CommentDTO> getListComments() {
+		return listComments;
+	}
+
+	public void setListComments(List<CommentDTO> listComments) {
+		this.listComments = listComments;
 	}
 
 	@Override

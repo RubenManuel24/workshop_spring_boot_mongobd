@@ -5,14 +5,14 @@ import java.util.Objects;
 
 import com.ruben.project.workshop.domain.User;
 
-public class Author implements Serializable{
+public class AuthorDTO implements Serializable{
 	
 	private String id;
 	private String name;
 	
-	public Author() {}
+	public AuthorDTO() {}
 	
-	public Author(User user) {
+	public AuthorDTO(User user) {
 		this.id = user.getId();
 		this.name = user.getName();
 	}
@@ -46,7 +46,7 @@ public class Author implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Author other = (Author) obj;
+		AuthorDTO other = (AuthorDTO) obj;
 		return Objects.equals(id, other.id) && Objects.equals(name, other.name);
 	}
 
